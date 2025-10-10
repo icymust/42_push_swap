@@ -1,0 +1,98 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.VolumeIcon.icns
+
+# Editors/IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+
+# Build artifacts (C/C++)
+*.o
+*.obj
+*.lo
+*.la
+*.al
+*.libs
+*.a
+*.so
+*.so.*
+*.dll
+*.dylib
+*.exe
+*.out
+*.app
+a.out
+
+# Dependency/Precompiled headers
+*.d
+*.dep
+*.pch
+*.gch
+
+# Debugging symbols
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Coverage
+*.gcno
+*.gcda
+*.gcov
+coverage/
+.lcov/
+lcov.info
+
+# Caches
+.cache/
+*.cache
+.ccache/
+.clangd/
+clangd/
+
+# Build directories
+build/
+Build/
+bin/
+obj/
+out/
+dist/
+temp/
+tmp/
+
+# 42 push_swap binaries
+push_swap
+checker
+
+# Common local libs
+libft.a
+
+# Logs
+*.log
+
+# Packaging
+*.tar
+*.tar.gz
+*.zip
+
+# Tools/aux
+compile_commands.json
+
+# Misc
+*.swp
+*.swo
+*~
+*.bak
+*.orig
+*.rej
