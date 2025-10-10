@@ -10,7 +10,7 @@ Icon?
 .VolumeIcon.icns
 
 # Editors/IDE
-.vscode/*
+.vscode/
 !.vscode/extensions.json
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -71,9 +71,6 @@ dist/
 temp/
 tmp/
 
-# 42 push_swap binaries
-push_swap
-checker
 
 # Common local libs
 libft.a
