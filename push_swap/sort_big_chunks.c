@@ -1,0 +1,90 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_big_chunks.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/31 18:06:51 by mmustone          #+#    #+#             */
+/*   Updated: 2025/10/31 18:06:54 by mmustone         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+/* найти позицию (0 = top) узла с МАКСИМАЛЬНЫМ idx в стеке s */
+static int pos_of_max_idx(t_stack *s)
+{
+    t_node *cur;
+    int     pos;
+    int     best_pos;
+    int     best_idx;
+
+    if (!s || s->size == 0)
+        return 0;
+    cur = s->top;
+    pos = 0;
+    best_pos = 0;
+    best_idx = -2147483648; /* меньше любого реального idx */
+    while (cur)
+    {
+        if (cur->idx > best_idx)
+        {
+            best_idx = cur->idx;
+            best_pos = pos;
+        }
+        cur = cur->next;
+        pos++;
+    }
+    return best_pos;
+}
+
+/* ЭТАП 1: выталкиваем из A в B «пачками» по индексам (окнами) */
+static void push_chunks_to_b(t_stack *a, t_stack *b, int chunk)
+{
+    int target;
+    int x;
+
+    target = 0;
+    while (a->size > 0)
+    {
+        x = a->top->idx;
+        if (x <= target)                 /* самый левый край окна → утопить в B */
+        {
+            op_pb(a, b);
+            op_rb(b);
+            target++;
+        }
+        else if (x <= target + chunk)    /* внутри текущего окна */
+        {
+            op_pb(a, b);
+            target++;
+        }
+        else                              /* ещё не дошли до окна → крутим A */
+            op_ra(a);
+    }
+}
+
+/* ЭТАП 2: возвращаем из B в A — всегда текущий МАКСИМУМ */
+static void greedy_return_from_b(t_stack *a, t_stack *b)
+{
+    int pos;
+    while (b->size > 0)
+    {
+        pos = pos_of_max_idx(b);
+        rotate_b_to_top(b, pos);  /* rb/rrb короткой стороной */
+        op_pa(a, b);
+    }
+}
+
+/* Внешняя обёртка: выбор ширины окна и два этапа */
+void sort_big_chunks(t_stack *a, t_stack *b)
+{
+    int n;
+    int chunk;
+
+    n = a->size;
+    chunk = (n <= 100) ? 18 : 40; /* при необходимости подправим после теста */
+    push_chunks_to_b(a, b, chunk);
+    greedy_return_from_b(a, b);
+}
