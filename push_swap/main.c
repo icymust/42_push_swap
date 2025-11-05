@@ -6,11 +6,26 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:07:12 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/05 13:39:37 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:07:33 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void sort_type(t_stack *a, t_stack *b)
+{
+    if (a->size == 2)
+        sort_two(a);
+    else if (a->size == 3)
+        sort_three(a);
+    else if (a->size == 4)
+        sort_four(a, b);
+    else if (a->size == 5)
+        sort_five(a, b);
+    else
+        sort_big_chunks(a, b);
+
+}
 
 int main(int ac, char **av)
 {
@@ -28,16 +43,7 @@ int main(int ac, char **av)
     index_assign(&a);
 
     if (!is_sorted(&a)) {
-        if (a.size == 2)
-            sort_two(&a);
-        else if (a.size == 3)
-            sort_three(&a);
-        else if (a.size == 4)
-            sort_four(&a, &b);
-        else if (a.size == 5)
-            sort_five(&a, &b);
-        else
-            sort_big_chunks(&a, &b);
+        sort_type(&a, &b);
     }
 
     stack_clear(&a);

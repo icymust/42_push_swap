@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:07:37 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/05 13:45:54 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:32:43 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	swap_top_two(t_stack *s)
 {
-	t_node *first, *second;
+	t_node	*first;
+	t_node	*second;
+
 	if (!s || s->size < 2)
 		return ;
 	first = s->top;
@@ -33,13 +35,15 @@ void	swap_top_two(t_stack *s)
 void	op_sa(t_stack *a)
 {
 	swap_top_two(a);
-    write(1, "sa\n", 3);
+	write(1, "sa\n", 3);
 }
+
 void	op_sb(t_stack *b)
 {
 	swap_top_two(b);
 	write(1, "sb\n", 3);
 }
+
 void	op_ss(t_stack *a, t_stack *b)
 {
 	swap_top_two(a);

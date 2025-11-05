@@ -6,12 +6,11 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:07:07 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/05 13:39:24 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/05 14:23:48 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdlib.h>
 
 static void arr_insertion_sort(int *arr, int n)
 {

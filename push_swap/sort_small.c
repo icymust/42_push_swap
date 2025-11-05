@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:07:48 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/05 13:43:38 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:35:50 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ void	sort_two(t_stack *a)
 
 void	sort_three(t_stack *a)
 {
-	int x, y, z;
+	int	x;
+	int	y;
+	int	z;
+
 	if (!a || a->size != 3 || is_sorted(a))
 		return ;
 	x = a->top->val;
@@ -94,22 +97,19 @@ void	sort_four(t_stack *a, t_stack *b)
 
 void	sort_five(t_stack *a, t_stack *b)
 {
-	int pos;
+	int	pos;
 
 	if (a->size != 5)
 		return ;
-
 	pos = pos_of_idx(a, 0);
 	rotate_a_to_top(a, pos);
 	op_pb(a, b);
-
 	pos = pos_of_idx(a, 1);
 	rotate_a_to_top(a, pos);
 	op_pb(a, b);
 	sort_three(a);
 	if (b->size >= 2 && b->top->idx < b->top->next->idx)
 		op_sb(b);
-
 	op_pa(a, b);
 	op_pa(a, b);
 }
