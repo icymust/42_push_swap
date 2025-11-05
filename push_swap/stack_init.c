@@ -6,13 +6,12 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:07:59 by mmustone          #+#    #+#             */
-/*   Updated: 2025/10/31 18:08:00 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/05 13:44:20 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* Создаёт пустой стек с заданным именем */
 t_stack	stack_init(char name)
 {
 	t_stack	s;
@@ -24,7 +23,6 @@ t_stack	stack_init(char name)
 	return (s);
 }
 
-/* Выделяет новый узел и заполняет его значением */
 t_node	*node_new(int val)
 {
 	t_node	*n;
@@ -33,7 +31,7 @@ t_node	*node_new(int val)
 	if (!n)
 		return (NULL);
 	n->val = val;
-	n->prev = NULL; //указывает на пред узел, если топ -> null
-	n->next = NULL; //указывает на след узел
+	n->prev = NULL;
+	n->next = NULL;
 	return (n);
 }

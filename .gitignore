@@ -12,3 +12,7 @@ Icon?
 *.o
 push_swap/push_swap
 push_swap/traces.txt
+checkers/push_swap
+checkers/0
+checkers/traces.txt
+.vscode/

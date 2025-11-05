@@ -6,14 +6,13 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:07:19 by mmustone          #+#    #+#             */
-/*   Updated: 2025/10/31 18:07:20 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/05 13:46:14 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//push a,b
-void op_pa(t_stack *a, t_stack *b) /* переложить вершину b -> a */
+void op_pa(t_stack *a, t_stack *b)
 {
     t_node *n;
 
@@ -22,13 +21,12 @@ void op_pa(t_stack *a, t_stack *b) /* переложить вершину b -> a
     n = stack_pop_top(b);
     if (n){
         stack_push_top(a, n);
-        op_print("pa\n");
+        write(1, "pa\n", 3);
     }
     
 }
 
-
-void op_pb(t_stack *a, t_stack *b) /* переложить вершину a -> b */
+void op_pb(t_stack *a, t_stack *b)
 {
     t_node *n;
 
@@ -37,7 +35,6 @@ void op_pb(t_stack *a, t_stack *b) /* переложить вершину a -> b
     n = stack_pop_top(a);
     if (n){
         stack_push_top(b, n);
-        op_print("pb\n");
+        write(1, "pb\n", 3);
     }
-    
 }

@@ -6,19 +6,17 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:07:54 by mmustone          #+#    #+#             */
-/*   Updated: 2025/10/31 18:07:55 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/05 13:44:07 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* 1 — пуст, 0 — не пуст */
 int stack_is_empty(t_stack *s)
 {
     return (s->size == 0);
 }
 
-/* вставка узла наверх: O(1) */
 void stack_push_top(t_stack *s, t_node *n)
 {
     if (!s || !n)
@@ -28,12 +26,11 @@ void stack_push_top(t_stack *s, t_node *n)
     if (s->top)
         s->top->prev = n;
     s->top = n;
-    if (s->bot == NULL)      /* если стек был пуст */
+    if (s->bot == NULL)
         s->bot = n;
     s->size += 1;
 }
 
-/* снять верхний узел и вернуть его (caller сам решает: использовать или free) */
 t_node *stack_pop_top(t_stack *s)
 {
     t_node *top;
@@ -41,21 +38,19 @@ t_node *stack_pop_top(t_stack *s)
     if (!s || s->size == 0)
         return NULL;
 
-    top = s->top;            /* запоминаем старую верхушку */
-    s->top = top->next;      /* сдвигаем вершину вниз (на следующий узел) */
-    if (s->top)              /* если новый top существует */
-        s->top->prev = NULL; /* у новой вершины нет «предыдущего» */
+    top = s->top;
+    s->top = top->next;
+    if (s->top)
+        s->top->prev = NULL;
     else
-        s->bot = NULL;       /* стек опустел: bot тоже NULL */
+        s->bot = NULL;
     s->size -= 1;
 
-    /* отцепим узел от списка на всякий случай — чтобы не было «хвостов» */
     top->prev = NULL;
     top->next = NULL;
-    return top;              /* возвращаем снятый узел */
+    return top;
 }
 
-/* снять и освободить все узлы стека */
 void stack_clear(t_stack *s)
 {
     t_node *n;
@@ -66,7 +61,6 @@ void stack_clear(t_stack *s)
         free(n);
 }
 
-/* push вниз (в хвост): сохраняет порядок ввода слева направо */
 void    stack_push_bot(t_stack *s, t_node *n)
 {
     if (!s || !n) return;
@@ -75,7 +69,7 @@ void    stack_push_bot(t_stack *s, t_node *n)
     if (s->bot)
         s->bot->next = n;
     else
-        s->top = n;     /* стек был пуст */
+        s->top = n;
     s->bot = n;
     s->size += 1;
 }

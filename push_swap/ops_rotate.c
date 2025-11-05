@@ -6,14 +6,12 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:07:32 by mmustone          #+#    #+#             */
-/*   Updated: 2025/10/31 18:07:32 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/05 13:46:36 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* ---- ROTATE MECHANICS ---- */
-/* internal: сдвиг вверх (top -> bot), без печати */
 void	rotate_up(t_stack *s)
 {
 	t_node	*first;
@@ -21,29 +19,28 @@ void	rotate_up(t_stack *s)
 
 	if (!s || s->size < 2)
 		return ;
-	first = s->top;       /* бывший верх */
-	second = first->next; /* станет новым top */
-	/* 1) отцепляем first от верха */
+	first = s->top;
+	second = first->next;
 	s->top = second;
 	second->prev = NULL;
-	/* 2) прицепляем first в самый низ */
 	first->next = NULL;
 	first->prev = s->bot;
 	s->bot->next = first;
 	s->bot = first;
 }
 
-/* публичные обёртки (пока без write("ra\n")) */
 void	op_ra(t_stack *a)
 {
 	rotate_up(a);
-	op_print("ra\n");
+	write(1, "ra\n", 3);
 }
+
 void	op_rb(t_stack *b)
 {
 	rotate_up(b);
-	op_print("rb\n");
+	write(1, "rb\n", 3);
 }
+
 void	op_rr(t_stack *a, t_stack *b)
 {
 	rotate_up(a);
@@ -51,7 +48,6 @@ void	op_rr(t_stack *a, t_stack *b)
 	write(1, "rr\n", 3);
 }
 
-/* Докрутить A так, чтобы элемент на позиции pos (0=top) стал вершиной */
 void rotate_a_to_top(t_stack *a, int pos)
 {
     int n, i;
@@ -72,7 +68,6 @@ void rotate_a_to_top(t_stack *a, int pos)
     }
 }
 
-/* То же самое для B */
 void rotate_b_to_top(t_stack *b, int pos)
 {
     int n, i;
@@ -92,4 +87,3 @@ void rotate_b_to_top(t_stack *b, int pos)
         while (i < (n - pos)) { op_rrb(b); i++; }
     }
 }
-

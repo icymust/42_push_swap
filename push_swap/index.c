@@ -6,15 +6,13 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:07:07 by mmustone          #+#    #+#             */
-/*   Updated: 2025/10/31 18:07:09 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/05 13:39:24 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* index.c — присваивает каждому узлу стека A ранг (idx) 0..n-1 */
 #include "push_swap.h"
 #include <stdlib.h>
 
-/* простая сортировка вставками (insertion sort) */
 static void arr_insertion_sort(int *arr, int n)
 {
     int i = 1;
@@ -32,7 +30,6 @@ static void arr_insertion_sort(int *arr, int n)
     }
 }
 
-/* линейный поиск индекса значения в отсортированном массиве */
 static int arr_index_of(int *arr, int n, int value)
 {
     int i = 0;
@@ -42,7 +39,7 @@ static int arr_index_of(int *arr, int n, int value)
             return i;
         i++;
     }
-    return 0; /* до сюда не дойдём, дубликатов нет по условиям парсинга */
+    return 0;
 }
 
 void index_assign(t_stack *a)
@@ -62,7 +59,6 @@ void index_assign(t_stack *a)
     if (!arr)
         return;
 
-    /* 1) скопировать значения из стека в массив */
     cur = a->top;
     i = 0;
     while (cur)
@@ -70,11 +66,8 @@ void index_assign(t_stack *a)
         arr[i++] = cur->val;
         cur = cur->next;
     }
-
-    /* 2) отсортировать массив по возрастанию */
     arr_insertion_sort(arr, n);
 
-    /* 3) присвоить каждому узлу ранг (позицию в отсортированном массиве) */
     cur = a->top;
     while (cur)
     {
