@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:07:32 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/05 15:29:38 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:11:12 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,56 +46,4 @@ void	op_rr(t_stack *a, t_stack *b)
 	rotate_up(a);
 	rotate_up(b);
 	write(1, "rr\n", 3);
-}
-
-void	rotate_a_to_top(t_stack *a, int pos)
-{
-	int n, i;
-	if (!a || a->size < 2)
-		return ;
-	n = a->size;
-	if (pos <= n / 2)
-	{
-		i = 0;
-		while (i < pos)
-		{
-			op_ra(a);
-			i++;
-		}
-	}
-	else
-	{
-		i = 0;
-		while (i < (n - pos))
-		{
-			op_rra(a);
-			i++;
-		}
-	}
-}
-
-void	rotate_b_to_top(t_stack *b, int pos)
-{
-	int n, i;
-	if (!b || b->size < 2)
-		return ;
-	n = b->size;
-	if (pos <= n / 2)
-	{
-		i = 0;
-		while (i < pos)
-		{
-			op_rb(b);
-			i++;
-		}
-	}
-	else
-	{
-		i = 0;
-		while (i < (n - pos))
-		{
-			op_rrb(b);
-			i++;
-		}
-	}
 }

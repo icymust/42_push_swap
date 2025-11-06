@@ -1,36 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_init.c                                       :+:      :+:    :+:   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/31 18:07:59 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/06 17:54:03 by mmustone         ###   ########.fr       */
+/*   Created: 2025/11/06 17:21:58 by mmustone          #+#    #+#             */
+/*   Updated: 2025/11/06 17:37:32 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	stack_init(void)
+int	ps_error(void)
 {
-	t_stack	s;
-
-	s.top = NULL;
-	s.bot = NULL;
-	s.size = 0;
-	return (s);
+	write(2, "Error\n", 6);
+	return (-1);
 }
 
-t_node	*node_new(int val)
+int	is_space(char c)
 {
-	t_node	*n;
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == '\v'
+		|| c == '\f');
+}
 
-	n = (t_node *)malloc(sizeof(t_node));
-	if (!n)
-		return (NULL);
-	n->val = val;
-	n->prev = NULL;
-	n->next = NULL;
-	return (n);
+int	is_digit(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+int	stack_contains(t_stack *s, int v)
+{
+	t_node	*cur;
+
+	cur = s->top;
+	while (cur)
+	{
+		if (cur->val == v)
+			return (1);
+		cur = cur->next;
+	}
+	return (0);
 }

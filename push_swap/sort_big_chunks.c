@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:06:51 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/05 15:35:04 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/06 20:18:15 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	pos_of_max_idx(t_stack *s)
 	cur = s->top;
 	pos = 0;
 	best_pos = 0;
-	best_idx = -2147483648;
+	best_idx = INT_MIN;
 	while (cur)
 	{
 		if (cur->idx > best_idx)
@@ -84,7 +84,7 @@ void	sort_big_chunks(t_stack *a, t_stack *b)
 	if (n <= 100)
 		chunk = 18;
 	else
-		chunk = 40;
+		chunk = 30;
 	push_chunks_to_b(a, b, chunk);
 	greedy_return_from_b(a, b);
 }

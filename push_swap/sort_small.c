@@ -6,27 +6,11 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:07:48 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/05 15:35:50 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/06 18:15:12 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	is_sorted(t_stack *a)
-{
-	t_node	*cur;
-
-	if (!a || a->size < 2)
-		return (1);
-	cur = a->top;
-	while (cur && cur->next)
-	{
-		if (cur->val > cur->next->val)
-			return (0);
-		cur = cur->next;
-	}
-	return (1);
-}
 
 void	sort_two(t_stack *a)
 {
@@ -63,23 +47,6 @@ void	sort_three(t_stack *a)
 	}
 	else if (x < y && y > z && x > z)
 		op_rra(a);
-}
-
-int	pos_of_idx(t_stack *s, int idx)
-{
-	t_node	*cur;
-	int		p;
-
-	cur = s->top;
-	p = 0;
-	while (cur)
-	{
-		if (cur->idx == idx)
-			return (p);
-		cur = cur->next;
-		p++;
-	}
-	return (0);
 }
 
 void	sort_four(t_stack *a, t_stack *b)
