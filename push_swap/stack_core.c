@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:07:54 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/05 15:44:22 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:23:49 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,21 @@ t_node	*stack_pop_top(t_stack *s)
 
 void	stack_clear(t_stack *s)
 {
-	t_node	*n;
+    t_node	*cur;
+    t_node	*next;
 
-	if (!s)
-		return ;
-	n = stack_pop_top(s);
-	while (n != NULL)
-	{
-		free(n);
-		n = stack_pop_top(s);
-	}
+    if (!s)
+        return ;
+    cur = s->top;
+    while (cur)
+    {
+        next = cur->next;
+        free(cur);
+        cur = next;
+    }
+    s->top = NULL;
+    s->bot = NULL;
+    s->size = 0;
 }
 
 void	stack_push_bot(t_stack *s, t_node *n)

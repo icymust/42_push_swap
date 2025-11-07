@@ -6,7 +6,7 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 18:07:12 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/06 17:55:44 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:23:27 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,19 @@ void	sort_type(t_stack *a, t_stack *b)
 
 int	main(int ac, char **av)
 {
-	t_stack	a;
-	t_stack	b;
+    t_stack	a;
+    t_stack	b;
 
-	a = stack_init();
-	b = stack_init();
-	if (ac < 2)
-		return (0);
-	if (parse_args_into_stack(ac, av, &a) < 0)
-	{
-		stack_clear(&a);
-		return (1);
-	}
-	index_assign(&a);
-	if (!is_sorted(&a))
-	{
-		sort_type(&a, &b);
-	}
-	stack_clear(&a);
-	(void)b;
-	return (0);
+    a = stack_init();
+    b = stack_init();
+    if (ac < 2)
+        return (0);
+    if (parse_args_into_stack(ac, av, &a) < 0)
+        ps_error(&a, &b);
+    index_assign(&a);
+    if (!is_sorted(&a))
+        sort_type(&a, &b);
+    stack_clear(&a);
+    stack_clear(&b);
+    return (0);
 }

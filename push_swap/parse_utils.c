@@ -6,16 +6,18 @@
 /*   By: mmustone <mmustone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 17:21:58 by mmustone          #+#    #+#             */
-/*   Updated: 2025/11/06 17:37:32 by mmustone         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:23:36 by mmustone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ps_error(void)
+int	ps_error(t_stack *a, t_stack *b)
 {
-	write(2, "Error\n", 6);
-	return (-1);
+    write(2, "Error\n", 6);
+    stack_clear(a);
+    stack_clear(b);
+    exit(1);
 }
 
 int	is_space(char c)
