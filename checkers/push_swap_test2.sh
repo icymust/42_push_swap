@@ -15,7 +15,9 @@ WHITE='\033[0;97m'
 
 printf ${BLUE}"\n-------------------------------------------------------------\n"${DEF_COLOR};
 printf ${YELLOW}"\n\t\tTEST CREATED BY: "${DEF_COLOR};
-printf ${CYAN}"GEMARTIN\t\n"${DEF_COLOR};
+printf ${CYAN}"GEMARTIN"${DEF_COLOR};
+printf ${YELLOW}"\n\t\tMODIFIED BY: "${DEF_COLOR};
+printf ${CYAN}"icymust(mmustone)\t\n"${DEF_COLOR};
 printf ${BLUE}"\n-------------------------------------------------------------\n"${DEF_COLOR};
 
 rm -rf traces.txt
@@ -3304,6 +3306,7 @@ cont=1
 while [ $cont -lt $val ]
 do
 ARG=$(ruby -e "puts (00..99).to_a.shuffle.join(' ')");
+echo TEST $cont ARG:"$ARG" >> traces.txt
 S=$(./push_swap $ARG | ./checker_Mac $ARG)
 if [ $S == "OK" ]; then
 	printf "${GREEN}$cont .[OK]${DEF_COLOR}";
@@ -3319,9 +3322,6 @@ if [ $N -gt $alta ]; then
 	if [ $N -lt $baja ]; then
 		baja=$(($N))
 	fi
-if [ $N -gt 700 ] || [ $N -eq 700 ]; then
-	echo TEST $cont ARG:"$ARG" >> traces.txt
-fi
 if [ $N -lt 700 ] && [ $control -eq 2 ]; then
 	printf "${GREEN}[OK][5/5]${DEF_COLOR}";
 	printf "${CYAN} Moves:$N${DEF_COLOR}\n";
@@ -3373,7 +3373,7 @@ elif [ $N -gt 1300 ] || [ $N -eq 1300 ] && [ $control -eq 2 ]; then
 	((res_5++))
 elif [ $control -eq 3 ]; then
 	printf "${CYAN} Moves:$N${DEF_COLOR}\n";
-	echo TEST $cont ARG:"$ARG" >> traces.txt
+	# already logged the tested ARG above
 	((res_err++))
 fi
 ((cont++))
@@ -5190,6 +5190,7 @@ cont=1
 while [ $cont -lt $val ]
 do
 ARG=$(ruby -e "puts (00..99).to_a.shuffle.join(' ')");
+echo TEST $cont ARG:"$ARG" >> traces.txt
 S=$(./push_swap $ARG | ./checker_Mac $ARG)
 R=$(./push_swap $ARG | ./checker $ARG)
 if [ $S == $R ] && [ $R == "OK" ]; then
@@ -5197,7 +5198,6 @@ if [ $S == $R ] && [ $R == "OK" ]; then
 	((res_1++))
 else
 	printf "${RED}$cont .[KO] ${DEF_COLOR}";
-	echo TEST $cont ARG:"$ARG" >> traces.txt
 	((res_2++))
 fi
 ((cont++))
